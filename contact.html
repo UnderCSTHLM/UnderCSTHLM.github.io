@@ -23,23 +23,27 @@
       flex-direction:column;
       align-items:center;
       flex-wrap: wrap;
+      /*background-image: url('Undercurrent_Illustration_RGB_Klein.png');
+      background-repeat: no-repeat;
+      background-position: 40px 200px;
+      background-size: 200px 400px;*/
     }
     body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 50vw; bottom: -50vh; right: 0;
-      pointer-events: none;
-      background-image: url('Undercurrent_Illustration_RGB_Vit.png');
-      background-repeat: no-repeat;
-      background-position: center right;
-      background-size: 50vw;
-      opacity: 0.60;
-      z-index: -1;
-    }
-    body {
-      position: relative;
-      z-index: -1;
-    }
+  content: "";
+  position: fixed;
+  top: 0; left: 50vw; bottom: -50vh; right: 0;
+  pointer-events: none;
+  background-image: url('Undercurrent_Illustration_RGB_Vit.png');
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: 50vw;
+  opacity: 0.60; /* Adjust opacity here */
+  z-index: -1;
+}
+body {
+  position: relative;
+  z-index: -1;
+}
 
     header{
       padding: 3.5rem 1rem;
@@ -67,9 +71,10 @@
       animation: wave var(--duration) linear infinite;
       animation-delay:var(--delay);
       will-change:transform;
-      width: 6vw;
-      max-width: 56px;
-      height: auto;
+      width: 6vw;        /* Responsive width: 8% of viewport width */
+      max-width: 56px;   /* Never larger than 80px */
+      height: auto;      /* Maintain aspect ratio */
+
     }
 
     @keyframes wave{
@@ -93,7 +98,6 @@
       color:var(--fg);
       font-weight:600;
       transition:opacity .2s;
-      font-size: 1.08rem;
     }
     nav a:hover{opacity:.6}
 
@@ -101,6 +105,7 @@
       flex:1;
       display:flex;
       flex-direction:column;
+      /* justify-content:center; */
       align-items:center;
       text-align:center;
       padding:2rem 1rem;
@@ -112,51 +117,53 @@
       color:#555;
     }
 
+
+
     @media (prefers-reduced-motion: reduce) and (max-width: 600px){
       .letter{ animation:none !important; transform:none !important;
-      width: 9vw;
-      max-width: 36px;
+      width: 9vw;     /* Larger relative size on small screens */
+      max-width: 36px; /* Never larger than 48px on phones */
       }
     }
     
-    /* DESKTOP CONTACT LIST */
-    .contact-list {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .contact-list .row {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      margin-bottom: 0.5em;
-    }
-    .contact-list dt {
-      flex: 0 0 auto;
-      white-space: nowrap;
-    }
-    .contact-list .dots {
-      flex: 1 1 auto;
-      text-align: center;
-      color: #002fa7;
-      font-family: monospace;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .contact-list .dots::before {
-      content: " · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ";
-    }
-    .contact-list dd {
-      flex: 0 0 auto;
-      white-space: nowrap;
-      margin-left: 0.5em;
-      text-align: right;
-    }
+.contact-list {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.contact-list .row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+.contact-list dt {
+  flex: 0 0 auto;
+  white-space: nowrap;
+
+}
+.contact-list .dots {
+  flex: 1 1 auto;
+  text-align: center;
+  color: #002fa7;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+
+}
+.contact-list .dots::before {
+  content: " · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ";
+}
+.contact-list dd {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-left: 0.5em;
+  text-align: right;
+}
 
     /* MOBILE CONTACT LIST (hidden by default) */
     .contact-mobile-list { display: none; }
 
-    /* MOBILE STYLES */
     @media (max-width: 600px) {
       .contact-list { display: none !important; }
       .contact-mobile-list {
@@ -164,57 +171,41 @@
         width: 100%;
         max-width: 500px;
         margin: 0 auto;
-        font-size: 1em;
+        font-size: 0.96em;
+        border-radius: 11px;
+        padding: 0.6em 0.2em;
       }
       .contact-mobile-row {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         width: 100%;
-        margin-bottom: 1.2em;
+        margin-bottom: 1.1em;
         font-size: 1em;
-        flex-wrap: nowrap;
-        overflow: hidden;
+        overflow: visible;
+        padding: 0.2em 0;
       }
       .mobile-label {
         font-weight: 600;
-        margin-right: 0.3em;
-        white-space: nowrap;
         font-size: 1em;
-        flex: 0 0 auto;
+        margin-bottom: 0.1em;
       }
+
       .mobile-value {
         font-weight: 400;
-        margin-left: 0.3em;
-        white-space: nowrap;
         font-size: 1em;
-        flex: 0 0 auto;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 45vw;
-      }
-      .mobile-dots {
-        flex: 1 1 auto;
-        min-width: 1.5em;
-        height: 1em;
-        margin: 0 0.1em;
-        position: relative;
-        display: block;
-        overflow: hidden;
-      }
-      .mobile-dots::before {
-        content: "................................................................................................................................................................................";
-        font-family: monospace;
-        color: #002fa7;
-        opacity: 0.32;
-        font-size: 1.1em;
-        letter-spacing: 0.08em;
-        display: block;
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
+        margin: 0;
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        padding: 0;
       }
       nav a {
         font-size: 1.06rem;
+      }
+      h2 {
+        font-size: 1.12em;
       }
     }
   </style>
@@ -238,7 +229,7 @@
         <div class="row">
           <dt>Adress&nbsp;</dt>
           <span class="dots"></span>
-          <dd>Årstaängsvägen 13D, 117 75 Stockholm, Sweden</dd>
+          <dd>Årstaängsvägen 13D, 117 75 Stockholm</dd>
         </div>
         <div class="row">
           <dt>Email&nbsp;</dt>
@@ -256,20 +247,21 @@
       <div class="contact-mobile-list">
         <div class="contact-mobile-row">
           <span class="mobile-label">Adress</span>
-          <span class="mobile-dots"></span>
           <span class="mobile-value">Årstaängsvägen 13D, 117 75 Stockholm, Sweden</span>
         </div>
         <div class="contact-mobile-row">
           <span class="mobile-label">Email</span>
-          <span class="mobile-dots"></span>
           <span class="mobile-value">undercurrent.STHLM@gmail.com</span>
         </div>
         <div class="contact-mobile-row">
           <span class="mobile-label">Instagram</span>
-          <span class="mobile-dots"></span>
           <span class="mobile-value">@undercurrent_sthlm</span>
         </div>
       </div>
+    </section>
+    <section id="contact" style="margin-top:3rem;">
+      <!-- You can add any extra content here -->
+    </section>
     </section>
 
     <section id="contact" style="margin-top:3rem;">
@@ -283,20 +275,22 @@
 
   <script>
     const text = 'MNOPQRSTUVWX';
-    const container = document.getElementById('undercurrent');
+const container = document.getElementById('undercurrent');
 
-    if (container) {
-      for(let i=0;i<text.length;i++){
-        const ch = text[i];
-        const img = document.createElement('img');
-        img.className = 'letter';
-        img.alt = ch;
-        img.src = 'undercurrent/bokstvr/' + ch + '.png';
-        const base = i * 450;
-        img.style.setProperty('--delay', base + 'ms');
-        container.appendChild(img);
-      }
-    }
+for(let i=0;i<text.length;i++){
+  const ch = text[i];
+  const img = document.createElement('img');
+  img.className = 'letter';
+  img.alt = ch;
+  img.src = 'undercurrent/bokstvr/' + ch + '.png'; // <-- updated path
+  const base = i * 450;
+  img.style.setProperty('--delay', base + 'ms');
+  /* img.style.height = '80px'; */  // Remove or comment out these lines:
+  // img.style.height = '80px';
+  // img.style.width = 'auto'; 
+  // img.style.width = 'auto';
+  container.appendChild(img);
+}
   </script>
 </body>
 </html>
