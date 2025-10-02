@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UNDERCURRENT</title>
+  <style>
+    :root{
+      --bg: #f5f5fd;
+      --fg: #002fa7;
+      --duration: 4000ms;
+      --amplitude: 0.45em; /* 2 × image height */
+      --gap: 0.25rem;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg);
+      color:var(--fg);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      /*background-image: url('Undercurrent_Illustration_RGB_Klein.png');
+      background-repeat: no-repeat;
+      background-position: 40px 200px;
+      background-size: 200px 400px;*/
+    }
+    body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 50vw; bottom: -50vh; right: 0;
+  pointer-events: none;
+  background-image: url('Undercurrent_Illustration_RGB_Vit.png');
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: 50vw;
+  opacity: 0.60; /* Adjust opacity here */
+  z-index: -1;
+}
+body {
+  position: relative;
+  z-index: -1;
+}
+
+    header{
+      padding:2rem 1rem;
+      text-align:center;
+    }
+
+    h1{
+      margin: 0 0 4rem 0;
+      line-height:1;
+      letter-spacing:0.05em;
+      font-size:clamp(28px, 7vw, 80px);
+    }
+
+    .word{
+      display:inline-flex;
+      gap:var(--gap);
+      align-items:flex-end;
+    }
+
+    .letter{
+      --delay: 0ms;
+      display:inline-block;
+      font-weight:800;
+      text-transform:uppercase;
+      animation: wave var(--duration) linear infinite;
+      animation-delay:var(--delay);
+      will-change:transform;
+      width: 6vw;        /* Responsive width: 8% of viewport width */
+      max-width: 56px;   /* Never larger than 80px */
+      height: auto;      /* Maintain aspect ratio */
+
+    }
+
+    @keyframes wave{
+      0%{ transform: translateY(0) }
+      15%{ transform: translateY(calc(-1 * var(--amplitude))); }
+      25%{ transform: translateY(calc(-1 * var(--amplitude))) }
+      50%{ transform: translateY(0) }
+      75%{ transform: translateY(var(--amplitude)) }
+      85%{ transform: translateY(var(--amplitude)) }
+      100%{ transform: translateY(0) }
+    }
+
+    nav{
+      display:flex;
+      gap:1.5rem;
+      justify-content:center;
+      margin-top:1.5rem;
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--fg);
+      font-weight:600;
+      transition:opacity .2s;
+    }
+    nav a:hover{opacity:.6}
+
+    main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      /* justify-content:center;*/
+      align-items:center;
+      text-align:center;
+      padding:2rem 1rem;
+    }
+
+    footer{
+      padding:1rem;
+      font-size:0.9rem;
+      color:#555;
+    }
+
+    @media (prefers-reduced-motion: reduce) and (max-width: 600px){
+      .letter{ animation:none !important; transform:none !important;
+      width: 9vw;     /* Larger relative size on small screens */
+      max-width: 36px; /* Never larger than 48px on phones */
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1 aria-label="UNDERCURRENT">
+      <span class="word" id="undercurrent" aria-hidden="true"></span>
+    </h1>
+    <nav>
+    <i><a href="undercurrent_header(1).html">Home</a></i>
+      <a href="about.html">About</a>
+      <a href="drinks.html">Drinks</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="drinks">
+      <h2>Discover Undercurrent</h2>
+      <p>Handcrafted drinks.</p>
+    </section>
+
+    <section id="events" style="margin-top:3rem;">
+      <h2>Latest Release</h2>
+      <p>Burk</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 UNDERCURRENT. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const text = 'MNOPQRSTUVWX';
+const container = document.getElementById('undercurrent');
+
+for(let i=0;i<text.length;i++){
+  const ch = text[i];
+  const img = document.createElement('img');
+  img.className = 'letter';
+  img.alt = ch;
+  img.src = 'undercurrent/bokstvr/' + ch + '.png'; // <-- updated path
+  const base = i * 550;
+  img.style.setProperty('--delay', base + 'ms');
+  /* img.style.height = '80px'; */  // Remove or comment out these lines:
+  // img.style.height = '80px';
+  // img.style.width = 'auto'; 
+  // img.style.width = 'auto';
+  container.appendChild(img);
+}
+  </script>
+</body>
+</html>
